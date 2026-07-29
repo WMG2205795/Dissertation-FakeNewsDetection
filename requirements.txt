@@ -1,0 +1,3 @@
+python jsonl_aggregation.py  --input_dir "F:\train_combination"  --output_path "F:\aggregated_raw.jsonl" 
+
+python jsonl_aggregation.py  --input_dir "F:\dev_knowledge_store\output_dev"  --output_path "F:\merged_dev.jsonl" 

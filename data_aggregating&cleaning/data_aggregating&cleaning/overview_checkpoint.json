@@ -1,0 +1,71 @@
+{
+  "input_path": "F:\\aggregated_raw.jsonl",
+  "byte_offset": 200880771274,
+  "stats": {
+    "total_lines": 3059139,
+    "empty_lines": 0,
+    "parse_errors": 0,
+    "total_records": 3059139,
+    "missing_url2text": 0,
+    "empty_url2text": 833096,
+    "total_units": 2122130858,
+    "empty_units": 1672462,
+    "suspicious_units": 133910695,
+    "records_with_suspicious_units": 1092729,
+    "units_with_non_ascii": 407047753,
+    "units_with_replacement": 279631,
+    "units_with_control": 9001616,
+    "units_with_cjk": 527201
+  },
+  "examples": {
+    "empty_url2text_examples": [
+      {
+        "line_no": 2,
+        "reason": "empty_url2text_list",
+        "claim_id": "0",
+        "type": "question",
+        "url": "https://www.reuters.com/article/idUSKBN1WX1P6/"
+      },
+      {
+        "line_no": 5,
+        "reason": "empty_url2text_list",
+        "claim_id": "0",
+        "type": "question",
+        "url": "https://www.washingtonpost.com/world/national-security/the-gas-tycoon-and-the-vice-presidents-son-the-story-of-hunter-bidens-foray-in-ukraine/2019/09/28/1aadff70-dfd9-11e9-8fd3-d943b4ed57e0_story.html"
+      }
+    ],
+    "suspicious_examples": [
+      {
+        "line_no": 3,
+        "unit_index": 48,
+        "claim_id": "0",
+        "type": "question",
+        "url": "https://apnews.com/article/joe-biden-europe-business-c49555d51eb243e09a42f7577fc5937f",
+        "char_stats": {
+          "has_non_ascii": true,
+          "non_ascii_count": 5,
+          "has_replacement": false,
+          "has_control": false,
+          "has_cjk": false
+        },
+        "unit_preview": "But “unless there’s solid evidence that Hunter Biden got his job to influence American foreign policy, there’s no clear line that’s been crossed,” said Melanie Sloan, executive director of the Citizens for Responsibility and Ethics in Washington."
+      },
+      {
+        "line_no": 4,
+        "unit_index": 23,
+        "claim_id": "0",
+        "type": "question",
+        "url": "https://time.com/2964493/ukraine-joe-biden-son-hunter-burisma/",
+        "char_stats": {
+          "has_non_ascii": true,
+          "non_ascii_count": 3,
+          "has_replacement": false,
+          "has_control": false,
+          "has_cjk": false
+        },
+        "unit_preview": "“I’ve spent a considerable amount of time in the last two months in Ukraine,” the elder Biden said on June 19."
+      }
+    ],
+    "parse_error_examples": []
+  }
+}

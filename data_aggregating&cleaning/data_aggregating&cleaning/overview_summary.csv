@@ -1,0 +1,16 @@
+metric,value
+total_lines,3059139
+empty_lines,0
+parse_errors,0
+total_records,3059139
+missing_url2text,0
+empty_url2text,833096
+total_units,2122130858
+empty_units,1672462
+suspicious_units,133910695
+records_with_suspicious_units,1092729
+units_with_non_ascii,407047753
+units_with_replacement,279631
+units_with_control,9001616
+units_with_cjk,527201
+suspicious_unit_ratio,0.06310199698344898

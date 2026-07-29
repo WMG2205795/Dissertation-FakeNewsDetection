@@ -1,0 +1,17 @@
+cd /d "E:\2026MainFiles\WMG_AAI 2025-2026\Dissertation\Project Code"
+
+conda activate FNDrag
+
+conda clean --all -y
+
+conda create -n FNDrag -c conda-forge python=3.10 -y
+
+python documents_overview.py --input_path "F:\aggregated_raw.jsonl" --max_examples 2
+
+python jsonl_aggregation.py  --input_dir "F:\train_combination"  --output_path "F:\aggregated_raw.jsonl" 
+
+python jsonl_aggregation.py  --input_dir "F:\dev_knowledge_store\output_dev"  --output_path "F:\merged_dev.jsonl" 
+
+python BM25_indexing.py  --database_path "F:\internal_split\dev_sentence.db"  --index_path "F:\internal_split\BM25_Sentence_Indexing" 
+
+python embedding.py  --database_path "F:\internal_split\dev_sentence.db"  --embedding_path "F:\internal_split\sentence_embedding"  --chunk_type "sentence"
