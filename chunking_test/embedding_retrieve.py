@@ -1,41 +1,72 @@
 import json
 from pathlib import Path
 import sqlite3
-import re
 import numpy as np
 import torch
-from langchain_ollama import ChatOllama
 from sentence_transformers import SentenceTransformer
 
 """
 Config zone
 """
 
-CLAIM_PATH = Path(r"E:\2026MainFiles\WMG_AAI 2025-2026\Dissertation\Project Code\AVeriTeC\data\internal_split\dev_claims_200.json")
-CLAIM_ID_PATH = Path(r"E:\2026MainFiles\WMG_AAI 2025-2026\Dissertation\Project Code\AVeriTeC\data\internal_split\dev_ids_200.json")
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+CLAIM_PATH = BASE_DIR / "AVeriTeC" / "data" / "internal_split" / "dev_claims_200.json"
+CLAIM_ID_PATH = BASE_DIR / "AVeriTeC" / "data" / "internal_split" / "dev_ids_200.json"
+
+CHUNK_MODE = "word_200_50"
+# Options:
+# "sentence"
+# "word_100_25"
+# "word_200_50"
+
+RETRIEVE_K = 1000
+CANDIDATE_K = 50
+
+DEDUPLICATE = False
 
 CHUNK_CONFIG = {
+
     "sentence": {
-        "db_path": Path(r"F:\internal_split\dev_sentence.db"),
-        "embedding_path": Path(r"F:\internal_split\sentence_embedding"),
-        "output_path": Path(r"E:\2026MainFiles\WMG_AAI 2025-2026\Dissertation\Project Code\chunking_test\report\embedding\sentence_report.json"),
+        "db_path": Path(
+            r"F:\internal_split\dev_sentence.db"
+        ),
+        "embedding_path": Path(
+            r"F:\internal_split\sentence_embedding"
+        ),
         "table_name": "sentences",
         "id_column": "sentence_id",
-        "text_column": "contents",
         "chunking_method": "sentence",
+        "text_column": "contents",
     },
-    "word": {
-        "db_path": Path(r"F:\internal_split\dev_chunks_200_overlap_50.db"),
-        "embedding_path": Path(r"F:\internal_split\chunks_200_overlap_50_embedding"),
-        "output_path": Path(r"E:\2026MainFiles\WMG_AAI 2025-2026\Dissertation\Project Code\chunking_test\report\embedding\chunks_200_overlap_50_report.json"),
+
+    "word_100_25": {
+        "db_path": Path(
+            r"F:\internal_split\dev_chunks_100_overlap_25.db"
+        ),
+        "embedding_path": Path(
+            r"F:\internal_split\chunks_100_overlap_25_embedding"
+        ),
         "table_name": "chunks",
         "id_column": "chunk_id",
+        "chunking_method": "word_100_overlap_25",
         "text_column": "contents",
-        "chunking_method": "word_overlap",
+    },
+
+    "word_200_50": {
+        "db_path": Path(
+            r"F:\internal_split\dev_chunks_200_overlap_50.db"
+        ),
+        "embedding_path": Path(
+            r"F:\internal_split\chunks_200_overlap_50_embedding"
+        ),
+        "table_name": "chunks",
+        "id_column": "chunk_id",
+        "chunking_method": "word_200_overlap_50",
+        "text_column": "contents",
     },
 }
 
-CHUNK_MODE= "word"
 
 if CHUNK_MODE not in CHUNK_CONFIG:
     raise ValueError(
@@ -43,48 +74,26 @@ if CHUNK_MODE not in CHUNK_CONFIG:
         f"Choose from {list(CHUNK_CONFIG)}"
     )
 
+
 CONFIG = CHUNK_CONFIG[CHUNK_MODE]
 
 EMBEDDING_DIR = CONFIG["embedding_path"]
 DB_PATH = CONFIG["db_path"]
-OUTPUT_PATH = CONFIG["output_path"]
+OUTPUT_PATH = Path(
+            BASE_DIR / "chunking_test"/"report" / "Dense" / f"{CHUNK_MODE}_Dense_retrieval_cache_{CANDIDATE_K}_Dedup_{DEDUPLICATE}.json"
+        )
+
 TABLE_NAME = CONFIG["table_name"]
 ID_COLUMN = CONFIG["id_column"]
 TEXT_COLUMN = CONFIG["text_column"]
 CHUNKING_METHOD = CONFIG["chunking_method"]
 
-LLM_MODEL_NAME = "qwen2.5:7b"
-TEMPERATURE = 0.0
-
 
 
 EMBEDDING_MODEL = "BAAI/bge-small-en-v1.5"
-RETRIEVE_K=100
-FINAL_TOP_K = 10
 VECTORS_NORMALIZED = True
 DEVICE = "cuda"
 
-
-#LLM Calling
-
-ALLOWED_LABELS = [
-    "Supported",
-    "Refuted",
-    "Not Enough Evidence",
-    "Conflicting Evidence/Cherrypicking",
-]
-llm = ChatOllama(
-    model=LLM_MODEL_NAME,
-    temperature=TEMPERATURE,
-    top_p=1.0,
-    seed=42
-)
-
-def call_llm(prompt):
-    response = llm.invoke(prompt)
-    if not response.content:
-        raise ValueError("The LLM returned an empty response.")
-    return str(response.content)
 
 def lookup_retrieved_chunks(
     connection,
@@ -143,95 +152,6 @@ def lookup_retrieved_chunks(
     return retrieved_chunks
 
 
-def format_evidence(retrieved_chunks: list[dict]) -> str:
-    evidence_blocks = []
-
-    for item in retrieved_chunks:
-        contents = item.get("contents")
-
-        if contents is None or not str(contents).strip():
-            continue
-
-        evidence_blocks.append(
-            "\n".join(
-                [
-                    f"[Evidence {item['rank']}]",
-                    f"Text: {contents}",
-                    f"Source URL: {item.get('source_url') or 'Unavailable'}",
-                    f"Source type: {item.get('source_type') or 'Unknown'}",
-                ]
-            )
-        )
-
-    if not evidence_blocks:
-        return "[No usable evidence was retrieved.]"
-
-    return "\n\n".join(evidence_blocks)
-
-
-def build_prompt(
-    claim: str,
-    retrieved_chunks: list[dict],
-) -> str:
-
-    evidence_text = format_evidence(retrieved_chunks)
-
-    return f"""
-            You are evaluating a factual claim using retrieved evidence.
-
-            CLAIM TO VERIFY:
-            {claim}
-
-            RETRIEVED EVIDENCE:
-            {evidence_text}
-
-            Assess the claim using only the retrieved evidence above.
-
-            Choose exactly one label:
-
-            - Supported: the evidence supports the central claim.
-            - Refuted: the evidence contradicts the central claim.
-            - Not Enough Evidence: the evidence is insufficient to support or refute the claim.
-            - Conflicting Evidence/Cherrypicking: the evidence is meaningfully conflicting, or the claim presents evidence selectively in a misleading way.
-
-            Return valid JSON only in this format:
-
-            {{
-            "predicted_label": "one of the four labels",
-            "reason": "a concise explanation grounded in the retrieved evidence"
-            }}
-            """.strip()
-
-
-def parse_llm_response(response_text: str) -> dict:
-    text = response_text.strip()
-
-    if text.startswith("```"):
-        text = re.sub(
-            r"^```(?:json)?\s*|\s*```$",
-            "",
-            text,
-            flags=re.IGNORECASE,
-        ).strip()
-
-    result = json.loads(text)
-
-    predicted_label = result.get("predicted_label")
-    reason = result.get("reason")
-
-    if predicted_label not in ALLOWED_LABELS:
-        raise ValueError(
-            f"Invalid predicted label: {predicted_label}"
-        )
-
-    if not isinstance(reason, str) or not reason.strip():
-        raise ValueError("Missing or empty reason.")
-
-    return {
-        "predicted_label": predicted_label,
-        "reason": reason.strip(),
-    }
-
 
 def save_json(
     output_path,
@@ -263,7 +183,7 @@ def normalize_contents(text):
 
 def deduplicate_chunks(
     retrieved_chunks,
-    final_k,
+    candidate_k,
 ):
     unique_chunks = []
     content_map = {}
@@ -288,24 +208,23 @@ def deduplicate_chunks(
             content_map[normalized][
                 "duplicate_provenance"
             ].append(provenance)
+
             continue
 
         kept_item = item.copy()
+
         kept_item["duplicate_provenance"] = [
             provenance
         ]
 
         content_map[normalized] = kept_item
-        unique_chunks.append(kept_item)
 
-    unique_chunks.sort(
-        key=lambda x: x["score"],
-        reverse=True,
-    )
+        unique_chunks.append(
+            kept_item
+        )
 
-    unique_count = len(unique_chunks)
-
-    unique_chunks = unique_chunks[:final_k]
+        if len(unique_chunks) >= candidate_k:
+            break
 
     for rank, item in enumerate(
         unique_chunks,
@@ -313,7 +232,31 @@ def deduplicate_chunks(
     ):
         item["rank"] = rank
 
-    return unique_chunks, unique_count
+    return unique_chunks
+
+def build_candidate_pool(
+    retrieved_chunks,
+    deduplicate,
+    candidate_k,
+):
+    if deduplicate:
+
+        return deduplicate_chunks(
+            retrieved_chunks=retrieved_chunks,
+            candidate_k=candidate_k,
+        )
+
+    candidate_chunks = retrieved_chunks[
+        :candidate_k
+    ]
+
+    for rank, item in enumerate(
+        candidate_chunks,
+        start=1,
+    ):
+        item["rank"] = rank
+
+    return candidate_chunks
 
 #Read all claims and form one metrix
 
@@ -530,25 +473,6 @@ del model
 del query_vectors
 torch.cuda.empty_cache()
 
-dense_topk_records = []
-DENSE_TOPK_PATH = OUTPUT_PATH.with_name(
-    OUTPUT_PATH.stem + "_topk.json"
-)
-for stored_claim_id, stored_candidates in dense_topk.items():
-    dense_topk_records.append(
-        {
-            "claim_id": stored_claim_id,
-            "retrieved_keys": stored_candidates,
-        }
-    )
-
-save_json(
-    DENSE_TOPK_PATH,
-    dense_topk_records,
-)
-
-print(f"Dense top-k saved to: {DENSE_TOPK_PATH}")
-
 connection = sqlite3.connect(
     f"file:{DB_PATH}?mode=ro",
     uri=True,
@@ -556,62 +480,52 @@ connection = sqlite3.connect(
 
 results = []
 
+
 try:
     for index, (claim_id, item) in enumerate(
         zip(claim_ids, claim_records),
         start=1,
     ):
-        
+
         claim_id = int(claim_id)
         claim = item["claim"]
         gold_label = item["label"]
 
         retrieved_chunks = []
-        current_retrieved_keys = []
-        raw_response = None
-        unique_count = 0
 
         try:
-            current_retrieved_keys = dense_topk[claim_id]
+            current_retrieved_keys = dense_topk[
+                claim_id
+            ]
 
-            retrieved_chunks = lookup_retrieved_chunks(
-                connection=connection,
-                retrieved_keys=current_retrieved_keys,
+            raw_retrieved_chunks = (
+                lookup_retrieved_chunks(
+                    connection=connection,
+                    retrieved_keys=current_retrieved_keys,
+                )
             )
 
-            retrieved_chunks, unique_count = deduplicate_chunks(
-                retrieved_chunks=retrieved_chunks,
-                final_k=FINAL_TOP_K,
-            )
-
-            prompt = build_prompt(
-                claim=claim,
-                retrieved_chunks=retrieved_chunks,
-            )
-
-            raw_response = call_llm(
-                prompt
-            )
-
-            parsed_response = parse_llm_response(
-                raw_response
+            retrieved_chunks = build_candidate_pool(
+                retrieved_chunks=raw_retrieved_chunks,
+                deduplicate=DEDUPLICATE,
+                candidate_k=CANDIDATE_K,
             )
 
             output_record = {
                 "claim_id": claim_id,
                 "claim": claim,
                 "gold_label": gold_label,
-                "predicted_label": (
-                    parsed_response["predicted_label"]
-                ),
-                "reason": parsed_response["reason"],
+
                 "retriever": "Dense",
                 "chunking_method": CHUNKING_METHOD,
                 "embedding_model": EMBEDDING_MODEL,
-                "model_name": LLM_MODEL_NAME,
-                "temperature": TEMPERATURE,
+
+                "retrieve_k": RETRIEVE_K,
+                "candidate_k": CANDIDATE_K,
+                "deduplicated": DEDUPLICATE,
+
                 "retrieved_evidence": retrieved_chunks,
-                "raw_response": raw_response,
+
                 "error": None,
             }
 
@@ -620,15 +534,17 @@ try:
                 "claim_id": claim_id,
                 "claim": claim,
                 "gold_label": gold_label,
-                "predicted_label": None,
-                "reason": None,
+
                 "retriever": "Dense",
                 "chunking_method": CHUNKING_METHOD,
                 "embedding_model": EMBEDDING_MODEL,
-                "model_name": LLM_MODEL_NAME,
-                "temperature": TEMPERATURE,
-                "retrieved_evidence": retrieved_chunks,
-                "raw_response": raw_response,
+
+                "retrieve_k": RETRIEVE_K,
+                "candidate_k": CANDIDATE_K,
+                "deduplicated": DEDUPLICATE,
+
+                "retrieved_evidence": [],
+
                 "error": repr(exc),
             }
 
@@ -644,7 +560,8 @@ try:
         print(
             f"[{index}/{len(claim_records)}] "
             f"Claim {claim_id}: "
-            f"{output_record['predicted_label'] or 'ERROR'}"
+            f"{len(output_record['retrieved_evidence'])} candidates "
+            f"(dedup={DEDUPLICATE})"
         )
 
 finally:

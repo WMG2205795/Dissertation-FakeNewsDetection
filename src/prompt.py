@@ -1,7 +1,7 @@
 from langchain_core.prompts import ChatPromptTemplate
 
 
-NO_RAG_PROMPT = ChatPromptTemplate.from_messages([
+PROMPT = ChatPromptTemplate.from_messages([
     (
         "system",
         """
@@ -13,20 +13,27 @@ Classify the claim into exactly one of the following labels:
 - Not Enough Evidence
 - Conflicting Evidence/Cherrypicking
 
-You can only use your internal knowledge and reasoning to classify the claim.
+You may use the information provided in the prompt together with knowledge encoded in your pretrained parameters.
 
 If your internal knowledge can strongly support the claim, choose "Supported". 
 If your internal knowledge can strongly refute the claim, choose "Refuted". 
 If your internal knowledge can provide conflicting evidence or cherrypicking, choose "Conflicting Evidence/Cherrypicking".
 If the claim cannot be verified reliably from general knowledge alone, choose "Not Enough Evidence".
 
-No external sources or links should be used. Do not make up any information. You cannot search the web or access any external databases. 
+You must not access or rely on any web search, online database, or retrieval tool beyond the evidence explicitly provided in the prompt. 
+If retrieved evidence is provided, use it as the primary external evidence for verification.
 
 Return a concise reason.
 """
     ),
     (
         "human",
-        "Claim:\n{claim}"
+        """
+    Claim:
+    {claim}
+
+    Retrieved Evidence:
+    {evidence}
+    """
     )
 ])

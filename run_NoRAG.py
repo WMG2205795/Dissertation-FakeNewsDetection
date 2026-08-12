@@ -3,7 +3,7 @@ from pathlib import Path
 
 from tqdm import tqdm
 
-from src.prompt import NO_RAG_PROMPT
+from src.prompt import PROMPT
 from src.llm_loader import load_open_llm
 
 def load_claims(path):
@@ -47,7 +47,7 @@ def load_claims(path):
     return claims
 
 
-def run_NoRAG(input_path, output_path, model_name, limit=None):
+def run_NoRAG(input_path, output_path, model_name, limit=None, temperature=0.0):
     claims = load_claims(input_path)
 
     if limit is not None:
@@ -57,7 +57,7 @@ def run_NoRAG(input_path, output_path, model_name, limit=None):
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
     structured_llm = load_open_llm(model_name=model_name, temperature=temperature)
-    chain = NO_RAG_PROMPT | structured_llm
+    chain = PROMPT | structured_llm
 
     records = []
 
@@ -102,4 +102,4 @@ if __name__ == "__main__":
     limit=None
     temperature = 0.0  
 
-    run_NoRAG(input_path, output_path, model_name, limit)  
+    run_NoRAG(input_path, output_path, model_name, limit, temperature)  

@@ -1,0 +1,258 @@
+[
+  {
+    "claim_id": 1,
+    "claim": "Donald Trump delivered the largest tax cuts in American history.",
+    "gold_label": "Refuted",
+    "predicted_label": "Refuted",
+    "reason": "The evidence from ABC News and BBC states that the recently enacted tax bill is not the largest tax cut in American history, measured as either a percentage of US GDP or in absolute terms. It ranks 12th as a percentage of GDP and fourth in inflation-adjusted dollars since 1918.",
+    "retriever": "BM25",
+    "chunking_method": "word_200_overlap_50",
+    "top_k": 10,
+    "bm25_k1": 1.2,
+    "bm25_b": 0.75,
+    "model_name": "qwen2.5:7b",
+    "temperature": 0.0,
+    "retrieved_evidence": [
+      {
+        "rank": 1,
+        "docid": "158_331_0",
+        "score": 18.778400421142578,
+        "store_claim_id": "158",
+        "record_id": 331,
+        "chunk_id": 0,
+        "contents": "State of the Union fact check: What Donald Trump is claiming President Trump delivered his first State of the Union address Tuesday. — -- After a tumultuous and busy first year in office, President Donald Trump delivered his first State of the Union address to Congress and the country. Our team of journalists from ABC News investigated some of those statements, looking for additional context, detail and information. TRUMP CLAIM: \"We enacted the biggest tax cuts and reforms in American history.\" WHY: The recently enacted tax bill is the 12th largest as a percentage of the GDP and the fourth largest in inflation-adjusted dollars since 1918. This is a claim the president has repeatedly made, but analyses of the current tax law and previous legislation show that's not the case. The Tax Cuts and Jobs Act signed into law at the end of last year comes with a $1.5 trillion price tag, and according to the Committee for a Responsible Federal Budget, an independent bipartisan public policy organization, it ranks as the 12th largest tax cut as a percentage of GDP and fourth largest in inflation-adjusted dollars since 1918. If the plan is extended, the group estimates the bill would",
+        "source_url": "https://abcnews.go.com/Politics/state-union-fact-check-donald-trump-claiming/story?id=52712047",
+        "source_type": "gpt_question"
+      },
+      {
+        "rank": 2,
+        "docid": "1_99_0",
+        "score": 18.778398513793945,
+        "store_claim_id": "1",
+        "record_id": 99,
+        "chunk_id": 0,
+        "contents": "State of the Union fact check: What Donald Trump is claiming President Trump delivered his first State of the Union address Tuesday. — -- After a tumultuous and busy first year in office, President Donald Trump delivered his first State of the Union address to Congress and the country. Our team of journalists from ABC News investigated some of those statements, looking for additional context, detail and information. TRUMP CLAIM: \"We enacted the biggest tax cuts and reforms in American history.\" WHY: The recently enacted tax bill is the 12th largest as a percentage of the GDP and the fourth largest in inflation-adjusted dollars since 1918. This is a claim the president has repeatedly made, but analyses of the current tax law and previous legislation show that's not the case. The Tax Cuts and Jobs Act signed into law at the end of last year comes with a $1.5 trillion price tag, and according to the Committee for a Responsible Federal Budget, an independent bipartisan public policy organization, it ranks as the 12th largest tax cut as a percentage of GDP and fourth largest in inflation-adjusted dollars since 1918. If the plan is extended, the group estimates the bill would",
+        "source_url": "https://abcnews.go.com/Politics/state-union-fact-check-donald-trump-claiming/story?id=52712047",
+        "source_type": "claim+question"
+      },
+      {
+        "rank": 3,
+        "docid": "1_6_0",
+        "score": 17.439899444580078,
+        "store_claim_id": "1",
+        "record_id": 6,
+        "chunk_id": 0,
+        "contents": "US tax cuts: Are they the biggest in American history? Claim: President Donald Trump has said that the recently passed Republican tax reform legislation is the \"biggest tax cut in US history\". Verdict: It is not the biggest tax cut in US history, measured as either a percentage of US GDP or in absolute terms. It is however, the biggest corporate tax cut in US history. It's tax day in America - something most Americans dread. But this year, the filing of both personal and corporate taxes has become even more complicated due to the recently passed tax reform bill in the United States. President Donald Trump touted the legislation in a speech on 16 April in Hialeah, Florida, saying: \"We have the biggest tax cut in history, bigger than the Reagan tax cut. But while most Americans are filing for 2017 and so won't feel the biggest impact until next year - is the claim true? Various think tanks and websites have attempted to calculate the total reduction in taxes for both US citizens and corporations this year. The Committee for a Responsible Budget crunched the numbers and said President Trump's tax cuts would be the eighth-largest in US",
+        "source_url": "https://www.bbc.com/news/world-43790895",
+        "source_type": "question"
+      },
+      {
+        "rank": 4,
+        "docid": "1_81_0",
+        "score": 17.439897537231445,
+        "store_claim_id": "1",
+        "record_id": 81,
+        "chunk_id": 0,
+        "contents": "US tax cuts: Are they the biggest in American history? Claim: President Donald Trump has said that the recently passed Republican tax reform legislation is the \"biggest tax cut in US history\". Verdict: It is not the biggest tax cut in US history, measured as either a percentage of US GDP or in absolute terms. It is however, the biggest corporate tax cut in US history. It's tax day in America - something most Americans dread. But this year, the filing of both personal and corporate taxes has become even more complicated due to the recently passed tax reform bill in the United States. President Donald Trump touted the legislation in a speech on 16 April in Hialeah, Florida, saying: \"We have the biggest tax cut in history, bigger than the Reagan tax cut. But while most Americans are filing for 2017 and so won't feel the biggest impact until next year - is the claim true? Various think tanks and websites have attempted to calculate the total reduction in taxes for both US citizens and corporations this year. The Committee for a Responsible Budget crunched the numbers and said President Trump's tax cuts would be the eighth-largest in US",
+        "source_url": "https://www.bbc.co.uk/news/world-43790895",
+        "source_type": "question_duplicate"
+      },
+      {
+        "rank": 5,
+        "docid": "2481_15_0",
+        "score": 17.439897537231445,
+        "store_claim_id": "2481",
+        "record_id": 15,
+        "chunk_id": 0,
+        "contents": "US tax cuts: Are they the biggest in American history? Claim: President Donald Trump has said that the recently passed Republican tax reform legislation is the \"biggest tax cut in US history\". Verdict: It is not the biggest tax cut in US history, measured as either a percentage of US GDP or in absolute terms. It is however, the biggest corporate tax cut in US history. It's tax day in America - something most Americans dread. But this year, the filing of both personal and corporate taxes has become even more complicated due to the recently passed tax reform bill in the United States. President Donald Trump touted the legislation in a speech on 16 April in Hialeah, Florida, saying: \"We have the biggest tax cut in history, bigger than the Reagan tax cut. But while most Americans are filing for 2017 and so won't feel the biggest impact until next year - is the claim true? Various think tanks and websites have attempted to calculate the total reduction in taxes for both US citizens and corporations this year. The Committee for a Responsible Budget crunched the numbers and said President Trump's tax cuts would be the eighth-largest in US",
+        "source_url": "https://www.bbc.com/news/world-43790895",
+        "source_type": "question"
+      },
+      {
+        "rank": 6,
+        "docid": "1153_485_0",
+        "score": 17.15410041809082,
+        "store_claim_id": "1153",
+        "record_id": 485,
+        "chunk_id": 0,
+        "contents": "BIGGEST TAX CUTS AND REFORMS: Because of President Donald J. Trump, Americans will benefit from the biggest tax cuts and reforms in American history. - President Trump’s tax cuts are the biggest gross tax cuts in American history, cutting over $5.5 trillion in taxes over ten years. - The President’s tax law included substantial reforms to make taxes simpler and fairer, which helped offset the cost of the tax cuts and thereby limit the net tax cut to $1.5 trillion. - President Trump cut the corporate tax rate from 35 percent to 21 percent, the largest percentage point reduction of the top marginal rate in history. - President Trump’s tax cuts include the biggest increase in the child tax credit in history. - The Child Tax Credit was increased by $573.4 billion over ten years, larger than any previous change to credits specifically targeting families. - President Trump’s tax cuts included some of the most substantial reforms to the tax code in American history. - The Tax Cuts and Jobs Act will help end the offshoring of corporate money by transitioning the country to a territorial system of corporate taxation and creating anti-abuse rules for multinationals that artificially shift profits",
+        "source_url": "https://trumpwhitehouse.archives.gov/briefings-statements/president-donald-j-trump-achieved-biggest-tax-cuts-reforms-american-history/",
+        "source_type": "provenance"
+      },
+      {
+        "rank": 7,
+        "docid": "1297_583_0",
+        "score": 17.154098510742188,
+        "store_claim_id": "1297",
+        "record_id": 583,
+        "chunk_id": 0,
+        "contents": "BIGGEST TAX CUTS AND REFORMS: Because of President Donald J. Trump, Americans will benefit from the biggest tax cuts and reforms in American history. - President Trump’s tax cuts are the biggest gross tax cuts in American history, cutting over $5.5 trillion in taxes over ten years. - The President’s tax law included substantial reforms to make taxes simpler and fairer, which helped offset the cost of the tax cuts and thereby limit the net tax cut to $1.5 trillion. - President Trump cut the corporate tax rate from 35 percent to 21 percent, the largest percentage point reduction of the top marginal rate in history. - President Trump’s tax cuts include the biggest increase in the child tax credit in history. - The Child Tax Credit was increased by $573.4 billion over ten years, larger than any previous change to credits specifically targeting families. - President Trump’s tax cuts included some of the most substantial reforms to the tax code in American history. - The Tax Cuts and Jobs Act will help end the offshoring of corporate money by transitioning the country to a territorial system of corporate taxation and creating anti-abuse rules for multinationals that artificially shift profits",
+        "source_url": "https://trumpwhitehouse.archives.gov/briefings-statements/president-donald-j-trump-achieved-biggest-tax-cuts-reforms-american-history/",
+        "source_type": "background_questions"
+      },
+      {
+        "rank": 8,
+        "docid": "1_2_0",
+        "score": 17.154098510742188,
+        "store_claim_id": "1",
+        "record_id": 2,
+        "chunk_id": 0,
+        "contents": "BIGGEST TAX CUTS AND REFORMS: Because of President Donald J. Trump, Americans will benefit from the biggest tax cuts and reforms in American history. - President Trump’s tax cuts are the biggest gross tax cuts in American history, cutting over $5.5 trillion in taxes over ten years. - The President’s tax law included substantial reforms to make taxes simpler and fairer, which helped offset the cost of the tax cuts and thereby limit the net tax cut to $1.5 trillion. - President Trump cut the corporate tax rate from 35 percent to 21 percent, the largest percentage point reduction of the top marginal rate in history. - President Trump’s tax cuts include the biggest increase in the child tax credit in history. - The Child Tax Credit was increased by $573.4 billion over ten years, larger than any previous change to credits specifically targeting families. - President Trump’s tax cuts included some of the most substantial reforms to the tax code in American history. - The Tax Cuts and Jobs Act will help end the offshoring of corporate money by transitioning the country to a territorial system of corporate taxation and creating anti-abuse rules for multinationals that artificially shift profits",
+        "source_url": "https://trumpwhitehouse.archives.gov/briefings-statements/president-donald-j-trump-achieved-biggest-tax-cuts-reforms-american-history/",
+        "source_type": "question"
+      },
+      {
+        "rank": 9,
+        "docid": "2481_6_0",
+        "score": 17.154096603393555,
+        "store_claim_id": "2481",
+        "record_id": 6,
+        "chunk_id": 0,
+        "contents": "BIGGEST TAX CUTS AND REFORMS: Because of President Donald J. Trump, Americans will benefit from the biggest tax cuts and reforms in American history. - President Trump’s tax cuts are the biggest gross tax cuts in American history, cutting over $5.5 trillion in taxes over ten years. - The President’s tax law included substantial reforms to make taxes simpler and fairer, which helped offset the cost of the tax cuts and thereby limit the net tax cut to $1.5 trillion. - President Trump cut the corporate tax rate from 35 percent to 21 percent, the largest percentage point reduction of the top marginal rate in history. - President Trump’s tax cuts include the biggest increase in the child tax credit in history. - The Child Tax Credit was increased by $573.4 billion over ten years, larger than any previous change to credits specifically targeting families. - President Trump’s tax cuts included some of the most substantial reforms to the tax code in American history. - The Tax Cuts and Jobs Act will help end the offshoring of corporate money by transitioning the country to a territorial system of corporate taxation and creating anti-abuse rules for multinationals that artificially shift profits",
+        "source_url": "https://trumpwhitehouse.archives.gov/briefings-statements/president-donald-j-trump-achieved-biggest-tax-cuts-reforms-american-history/",
+        "source_type": "question"
+      },
+      {
+        "rank": 10,
+        "docid": "1_88_2",
+        "score": 16.74370002746582,
+        "store_claim_id": "1",
+        "record_id": 88,
+        "chunk_id": 2,
+        "contents": "Federal Budget has noted that an even earlier tax cut from 1921, not included in the Treasury Department analysis, accounted for 1.1 percent of GDP. The group added in a blog post that \"if President Trump wanted to pass a tax cut that exceeds the record 2.9 percent of the economy in 1981, it would cost roughly $6.8 trillion over ten years.\" Trump said, \"we enacted the biggest tax cuts and reforms in American history.\" In inflation-adjusted dollars, the recent tax bill is the fourth-largest since 1940. And as a percentage of GDP, it ranks seventh. Donald Trump, State of the Union address, Jan. 30, 2018 U.S. Treasury Department, \"Revenue Effects of Major Tax Bills, Updated Tables for All 2012 Bills,\" February 2013 Committee for a Responsible Federal Budget, \"Is President Trump's Tax Cut the Largest in History Yet?\" Federal Reserve Bank of St. Louis, annual GDP, accessed Oct. 26, 2017 Donald Trump wrong again that recent tax bill is biggest ever In a world of wild talk and fake news, help us stand up for the facts.",
+        "source_url": "https://www.politifact.com/factchecks/2018/jan/31/donald-trump/donald-trump-wrong-again-recent-tax-bill-biggest-e/",
+        "source_type": "question_duplicate"
+      }
+    ],
+    "raw_response": "{\n\"predicted_label\": \"Refuted\",\n\"reason\": \"The evidence from ABC News and BBC states that the recently enacted tax bill is not the largest tax cut in American history, measured as either a percentage of US GDP or in absolute terms. It ranks 12th as a percentage of GDP and fourth in inflation-adjusted dollars since 1918.\"\n}",
+    "error": null
+  },
+  {
+    "claim_id": 6,
+    "claim": "35% of revenue goes to states. (In Nigeria)",
+    "gold_label": "Refuted",
+    "predicted_label": "Supported",
+    "reason": "Evidence 5 clearly states that 40% of VAT revenue is allocated to the states and FCT, while 35% goes to localities. This directly supports the claim that 35% of revenue goes to states in Nigeria.",
+    "retriever": "BM25",
+    "chunking_method": "word_200_overlap_50",
+    "top_k": 10,
+    "bm25_k1": 1.2,
+    "bm25_b": 0.75,
+    "model_name": "qwen2.5:7b",
+    "temperature": 0.0,
+    "retrieved_evidence": [
+      {
+        "rank": 1,
+        "docid": "6_232_23",
+        "score": 10.140299797058105,
+        "store_claim_id": "6",
+        "record_id": 232,
+        "chunk_id": 23,
+        "contents": "of collection are paid into the VAT pool while other federally collected taxes net of costs of collection Of funds in the FA, 48.5 percent goes to the federal government (and an additional 4.18 percent is passed through the federal government to special funds), 26.72 percent goes to the state governments, and 20.6 percent goes to the local governments. Of the funds in the VAT pool, 14 percent goes to the federal government (an additional 1 percent goes to FCT through the federal government), 50 percent goes to the state governments, and 35 percent goes to the local governments. The federal government revenues therefore consist of independent revenues, share from the FA, and share from the VAT pool while the revenues of state governments consist of their internally generated revenues (IGRs) and their shares from both the FA and the VAT pool. Similarly, the revenues of the local governments are made up of their IGR, shares from their respective state government’s revenues, and their shares from Distribution of Nigerian Revenues among Tiers of Government Source: Revenue Mobilization Allocation and Fiscal Commission (RMAFC) The effective participation and support of health sector stakeholders was considered critical to the organization of the PEMR.",
+        "source_url": "https://www.hfgproject.org/wp-content/uploads/2015/02/A-Review-of-Public-Expenditure-Management-in-Nigeria-Cross-River-State-Report.pdf",
+        "source_type": "answer"
+      },
+      {
+        "rank": 2,
+        "docid": "473_682_2",
+        "score": 9.630900382995605,
+        "store_claim_id": "473",
+        "record_id": 682,
+        "chunk_id": 2,
+        "contents": "implementation for instance [8] studies beyond statutory allocation, with focus on the contribution of internally generated revenue in Benue State: [1] assessed state governors and revenue allocation formula in Nigeria; [2] examined federal government statutory fund allocation to state in Nigeria; while [9] overviewed Nigerian federalism and the statutory allocation of fund. Observably, there was no objective analysis carried out in any of the previous studies to track the influence of actual statutory allocation on actual government expenditure implementation in southwest states in Nigeria. Hence this study examined the connection between statutory allocation and budget implementation in southwest states in Nigeria by analyzing the: 1) Impact of actual statutory allocation on actual expenditure of southwest states in Nigeria; 2) Causal relationship between actual statutory allocation and actual expenditure of southwest states in Nigeria. This is the allocation from the federal government that goes to each state as a means of revenue assistance from Federal Government. This allocation is sometimes based on some criteria such as population of the state, availability of natural resources and the need for infrastructural development in the state. Statutory allocation is the amount standing to the credit pf the Federation account less the sum equivalent to",
+        "source_url": "https://www.scirp.org/journal/paperinformation.aspx?paperid=93800",
+        "source_type": "same_entity_questions"
+      },
+      {
+        "rank": 3,
+        "docid": "6_363_2",
+        "score": 9.630899429321289,
+        "store_claim_id": "6",
+        "record_id": 363,
+        "chunk_id": 2,
+        "contents": "implementation for instance [8] studies beyond statutory allocation, with focus on the contribution of internally generated revenue in Benue State: [1] assessed state governors and revenue allocation formula in Nigeria; [2] examined federal government statutory fund allocation to state in Nigeria; while [9] overviewed Nigerian federalism and the statutory allocation of fund. Observably, there was no objective analysis carried out in any of the previous studies to track the influence of actual statutory allocation on actual government expenditure implementation in southwest states in Nigeria. Hence this study examined the connection between statutory allocation and budget implementation in southwest states in Nigeria by analyzing the: 1) Impact of actual statutory allocation on actual expenditure of southwest states in Nigeria; 2) Causal relationship between actual statutory allocation and actual expenditure of southwest states in Nigeria. This is the allocation from the federal government that goes to each state as a means of revenue assistance from Federal Government. This allocation is sometimes based on some criteria such as population of the state, availability of natural resources and the need for infrastructural development in the state. Statutory allocation is the amount standing to the credit pf the Federation account less the sum equivalent to",
+        "source_url": "https://www.scirp.org/journal/paperinformation.aspx?paperid=93800",
+        "source_type": "background"
+      },
+      {
+        "rank": 4,
+        "docid": "1917_315_434",
+        "score": 9.453900337219238,
+        "store_claim_id": "1917",
+        "record_id": 315,
+        "chunk_id": 434,
+        "contents": "An evidence of this is found in Okwudiba Nnoli’s (1980) argument in Ethnic Politics in Nigeria in which he states that “in Nigeria, the colonial urban setting constitutes the cradle of contemporary ethnicity” (p. 35). He goes on to argue that the British are responsible for Nigeria’s socio-political status today. Twenty years after the official exit of British colonial rule, during which time Nigeria had six indigenous Heads of State and Presidents, ethnicity was still referred to as an instrument of colonial governments in the negative sense. Even if the colonial legacy of ethnicity was detrimental to the political ordering of the state, six successive governments are sufficient to undo the trappings of ethnic chauvinism. Furthermore, Onyeozili (2005) reported that “imperial policing orientations and preoccupations have been maintained and strengthened by postcolonial governments in Nigeria” (p. 36), without providing adequate reasons for the decisions to maintain and strengthen the colonial practice. He goes on to suggest that the retention of colonial practices might be responsible for the anomalies encountered in state apparatuses such as the police. These positions are indeed problematic because they do not provide evidence for such claims, but they do buttress my point on the Nigerian tendency",
+        "source_url": "https://westminsterresearch.westminster.ac.uk/download/43ff42cb810ee35f8ad8fd211ac08482451f5c3131ad018a7c2842bae03f1227/1490268/Agina_Anulika_thesis2015.pdf",
+        "source_type": "question_duplicate"
+      },
+      {
+        "rank": 5,
+        "docid": "6_195_35",
+        "score": 9.417400360107422,
+        "store_claim_id": "6",
+        "record_id": 195,
+        "chunk_id": 35,
+        "contents": "percent and assigned the balance to the localities (Daily Times, 17th January, 1995:51. Trenchant criticisms of this brazen assault on fiscal federalism led General Abacha to announce the following sharing formula for VAT in February 1996. Forty percent for the states and the Federal Capital Territory (FCT), Abuja, 35 percent to the Federal Government and 25 percent to the localities (The Guardian February 18, 1995:18). Yet, an even more perverse feature of the VAT regime is the Federal Government’s distortion, politicization and centralization of the Ojo, Revenue Allocation and Resource Control in Nigeria inter-state sharing arrangements with the consequence that the returns to the bigger contributors to VAT (mainly Lagos and other southern states) are almost inversely proportional to their contributions (Daily Times, January 4, 1995 and Nigerian Tribune The following tables below clearly encapsulated revenue allocation formulae in both pre and post independence Nigeria. They are self explanatory. Table 1: System of revenue allocation to the regions/states of Nigeria since 1948 Ojo, Revenue Allocation and Resource Control in Nigeria Ojo, Revenue Allocation and Resource Control in Nigeria Ojo, Politics of revenue allocation and resource control in Nigeria Table 2: Vertical allocation of the federation account, 1981-1995 Source: Suberu, 1995,",
+        "source_url": "https://www.ssoar.info/ssoar/bitstream/document/34277/1/ssoar-fedgov-2010-1-ojo-The_politics_of_revenue_allocation.pdf",
+        "source_type": "claim+question"
+      },
+      {
+        "rank": 6,
+        "docid": "6_224_255",
+        "score": 9.30090045928955,
+        "store_claim_id": "6",
+        "record_id": 224,
+        "chunk_id": 255,
+        "contents": "funds are moved a schedule is done seeking management approval to move the fund and it goes through various levels of authorisation before it gets to the at it goes through the head of office to the head of division before it gets to the Director International Payment Division For the 2014 Audit year, we were able to establish from CBN that there was no changes with respects to paying accounts and arrangements compared with 2013. 8.11 Office of the Accountant General of the Federation (OAGF) Section 162(1) of the 1999 Constitution of the Federal Republic of Nigeria states that “The Federation shall maintain a special account to be called \"the Federation Account\" into which shall be paid all revenues collected by the Government of the Federation, except the proceeds from the personal income tax of the personnel of the armed forces of the Federation, the Nigeria Police Force, the Ministry or department of Government charged with responsibility for Foreign Affairs and the residents of the Further in the constitution, under section 162 (Public Revenue), the Federation Revenue is defined as any income or return accruing to or derived by the Government of the Federation from any source and any",
+        "source_url": "https://eiti.org/sites/default/files/attachments/neiti-oil-gas-report-2014-full-report-301216.pdf",
+        "source_type": "answer"
+      },
+      {
+        "rank": 7,
+        "docid": "549_456_1",
+        "score": 9.111599922180176,
+        "store_claim_id": "549",
+        "record_id": 456,
+        "chunk_id": 1,
+        "contents": "is on an upward trajectory, and its economic growth is a manifestation of this growth. The largest and most economically important industry in Nigeria is the country’s petroleum industry. The country is among the top ten largest producers of oil globally and has the largest oil producer in the continent. Crude oil and petroleum products are the country’s chief export commodities which account for over 98% of the country’s annual exports. Oil exports generate an estimated 14% of Nigeria’s GDP and are responsible for about 83% of the government’s revenue. The prominence of the petroleum industry in Nigeria is evident on the immense oil deposits found in the country which are estimated to be over 16 billion barrels. Some sources have the proven oil deposits in the country to be as high as 35 billion barrels. Oil was discovered in the country in the 1950s, but the history of oil exploration in the country goes back to the turn of the 20th Century. The bulk of the oil produced in the country is sourced from the Niger Delta region. The huge oil deposits found in the region has attracted giant multinationals to the country including Royal Dutch Shell whose oil",
+        "source_url": "https://www.worldatlas.com/articles/what-are-the-biggest-industries-in-nigeria.html",
+        "source_type": "background"
+      },
+      {
+        "rank": 8,
+        "docid": "1712_401_17",
+        "score": 9.103300094604492,
+        "store_claim_id": "1712",
+        "record_id": 401,
+        "chunk_id": 17,
+        "contents": "for resource control as they claim the government is not fulfilling their promise of giving them the large part of the oil revenues. The wealth from natural resources in Nigeria is supposed to be working with the derivation policy, but this policy is not functional in any way, as the oil-producing states are still impoverished and this policy is supposed to work in a way such that these states with these natural resources should be able to get a large part of the countries revenue as they contribute a lot to the national wealth. According to Collier (2007), resource wealth sometimes contributes to a conflict trap and the surplus from natural resource exports reduces growth. He goes on to discuss the case of Nigeria in the 1970s, when other exports of the country like agriculture became non- profitable due to increase oil revenues. He explains how the Dutch disease can damage the growth process by closing out on the exports in other promising sectors of the economy. The first half of the 1980s gave rise to a huge oil boom in Nigeria and also led to excessive government borrowing and investment on wasteful projects that made the corruption in the",
+        "source_url": "https://www.american.edu/cas/economics/ejournal/upload/ucha_accessible.pdf",
+        "source_type": "background_questions"
+      },
+      {
+        "rank": 9,
+        "docid": "2104_256_17",
+        "score": 9.103299140930176,
+        "store_claim_id": "2104",
+        "record_id": 256,
+        "chunk_id": 17,
+        "contents": "for resource control as they claim the government is not fulfilling their promise of giving them the large part of the oil revenues. The wealth from natural resources in Nigeria is supposed to be working with the derivation policy, but this policy is not functional in any way, as the oil-producing states are still impoverished and this policy is supposed to work in a way such that these states with these natural resources should be able to get a large part of the countries revenue as they contribute a lot to the national wealth. According to Collier (2007), resource wealth sometimes contributes to a conflict trap and the surplus from natural resource exports reduces growth. He goes on to discuss the case of Nigeria in the 1970s, when other exports of the country like agriculture became non- profitable due to increase oil revenues. He explains how the Dutch disease can damage the growth process by closing out on the exports in other promising sectors of the economy. The first half of the 1980s gave rise to a huge oil boom in Nigeria and also led to excessive government borrowing and investment on wasteful projects that made the corruption in the",
+        "source_url": "https://www.american.edu/cas/economics/ejournal/upload/ucha_accessible.pdf",
+        "source_type": "gpt_question"
+      },
+      {
+        "rank": 10,
+        "docid": "2750_227_17",
+        "score": 9.10329818725586,
+        "store_claim_id": "2750",
+        "record_id": 227,
+        "chunk_id": 17,
+        "contents": "for resource control as they claim the government is not fulfilling their promise of giving them the large part of the oil revenues. The wealth from natural resources in Nigeria is supposed to be working with the derivation policy, but this policy is not functional in any way, as the oil-producing states are still impoverished and this policy is supposed to work in a way such that these states with these natural resources should be able to get a large part of the countries revenue as they contribute a lot to the national wealth. According to Collier (2007), resource wealth sometimes contributes to a conflict trap and the surplus from natural resource exports reduces growth. He goes on to discuss the case of Nigeria in the 1970s, when other exports of the country like agriculture became non- profitable due to increase oil revenues. He explains how the Dutch disease can damage the growth process by closing out on the exports in other promising sectors of the economy. The first half of the 1980s gave rise to a huge oil boom in Nigeria and also led to excessive government borrowing and investment on wasteful projects that made the corruption in the",
+        "source_url": "https://www.american.edu/cas/economics/ejournal/upload/ucha_accessible.pdf",
+        "source_type": "gpt_question"
+      }
+    ],
+    "raw_response": "{\n\"predicted_label\": \"Supported\",\n\"reason\": \"Evidence 5 clearly states that 40% of VAT revenue is allocated to the states and FCT, while 35% goes to localities. This directly supports the claim that 35% of revenue goes to states in Nigeria.\"\n}",
+    "error": null
+  }
+]
